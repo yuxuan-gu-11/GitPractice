@@ -1,13 +1,14 @@
 public class PositiveInteger {
     private int num;
 
-    public PositiveInteger(int number){
+    public PositiveInteger(int number) {
         num = number;
     }
-    private int sumOfUniqueFactors(){
+
+    private int sumOfUniqueFactors() {
         int sum = 0;
-        for(int i = 1; i <= num / 2; i++){
-            if(num % i == 0){
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
                 sum += i;
             }
         }
@@ -19,10 +20,29 @@ public class PositiveInteger {
     }
 
     public boolean isAbundant() {
-       return num > 0 && sumOfUniqueFactors() > num;
+        return num > 0 && sumOfUniqueFactors() > num;
     }
 
     public boolean isNarcissistic() {
-        return false;
+        if (num < 1) {
+            return false;
+        }
+        int digitCount = 0;
+        for (int n = num; n > 0; n /= 10) {
+            digitCount++;
+        }
+
+        // Add up each digit raised to the power digitCount.
+        int sum = 0;
+        for (int n = num; n > 0; n /= 10) {
+            int digit = n % 10;
+            int power = 1;
+            for (int i = 0; i < digitCount; i++) {
+                power *= digit;
+            }
+            sum += power;
+        }
+
+        return sum == num;
     }
 }
