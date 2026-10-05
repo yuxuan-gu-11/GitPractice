@@ -19,7 +19,7 @@ public class PositiveInteger {
     }
 
     public boolean isAbundant() {
-       return false;
+       return num > 0 && sumOfUniqueFactors() > num;
     }
 
     public boolean isNarcissistic() {
