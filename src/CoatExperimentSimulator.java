@@ -12,7 +12,7 @@ public class CoatExperimentSimulator {
         int count = 0;
         for (int i = 0; i < permutation.length; i++){
             if (permutation[i] == i + 1){
-                count ++;
+                count++;
             }
         }
         return count;
@@ -20,7 +20,7 @@ public class CoatExperimentSimulator {
 
     public int[] simulateCoatExperiment(int iterations) {
         int[] results = new int [iterations];
-        for (int i = 0; i < iterations; i ++){
+        for (int i = 0; i < iterations; i++){
             int[] permutation = RandomOrderGenerator.getRandomOrder(numberOfPeople);
             results[i] = numPplWhoGotTheirCoat(permutation);
         }
@@ -29,16 +29,20 @@ public class CoatExperimentSimulator {
 
     public double answerToQuestionOne(int[] results) {
         int zeroCount = 0;
-        for (int i = 0; i < results.length; i ++){
+        for (int i = 0; i < results.length; i++){
             if (results[i] == 0){
-                zeroCount ++;
+                zeroCount++;
             }
         }
         return (double) zeroCount / results.length;
     }
 
     public double answerToQuestionTwo(int[] results) {
-        return 0.0;
+        int total = 0;
+        for (int i = 0; i < results.length; i++){
+            total += results[i];
+        }
+        return (double) total / results.length;
     }
 }
 
